@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> ParkingSlot </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="js/githubLibrary.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"> <img src="img/logo.png" /> </a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a class="principal">Principal</a></li>
+        <li><a class="colecciones">Gestión de Colecciones</a></li>
+        <li><a class="instalaciones">Gestión de Instalaciones</a></li>
+        <button id='todosAparca'> Cargar aparcamientos </button>
+        <button type="button" class="btn btn-info btn-md" id="guardaColsGH"> Guardar </button>
+        <button type="button" class="btn btn-info btn-md" id="cargaColsGH"> Cargar </button>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="modal fade" id="myModalGuardar" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Guardar Colecciones en GitHub.</h4>
+        </div>
+        <div class="modal-body">
+          Token GH: <input type="text" name="tokenGH" placeholder="Token de GitHub"><br>
+          <br>
+          Repositorio: <input type="text" name="repo" placeholder="Nombre del repositorio"><br>
+          <br>
+          Nombre Colección: <input type="text" name="nombreCol" placeholder="Nombre de la colección"><br>
+        </div>
+        <button type="submit" class="btn btn-default">Guardar colección</button>
+        <p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModalCargar" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cargar colecciones de GitHub.</h4>
+        </div>
+        <div class="modal-body">
+          Token GH: <input type="text" name="tokenGHC" placeholder="Token de GitHub"><br>
+          <br>
+          Repositorio: <input type="text" name="repoC" placeholder="Nombre del repositorio"><br>
+          <br>
+          Nombre Colección: <input type="text" name="nombreColC" placeholder="Nombre de la colección"><br>
+        </div>
+        <button type="submit" class="btn btn-default">Cargar colección</button>
+        <p>
+      </div>
+    </div>
+  </div>
+
+  <div id='principal'>
+  <div class="container">
+    <div id="map">
+    </div>
+  </div>
+  <div class="row">
+    <br>
+    <div class="col-xs-4 col-md-4" id='primero'>
+      <div id='cargarParkings'>
+        <h3> <b> Lista de Aparcamientos </b> </h3>
+        <div id="lista"></div>
+      </div>
+    </div>
+    <div class="col-xs-8 col-md-8" id='tercero'>
+      <div id="seleccionado">
+        <h3> <b> Vista de aparcamiento seleccionado </b> </h3>
+        <div id='info'>
+          <div class="row">
+            <div class="col-xs-8 col-md-4" id='sitio-info'>
+            </div>
+            <div class="col-xs-8 col-md-8" id='carousel'>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+                  </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12" id='colActual'>
+      <div id='listaColActual'>
+        <h3> <b> Colección actual </b> </h3>
+        <div id="listaActual">
+          <h3> Nombre colección:  </h3>
+          <ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+  <div id='instalaciones'>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <div id="seleccionado">
+          <h3> <b> Breve información de aparcamiento seleccionado </b> </h3>
+          <div id='info'>
+            <div class="row">
+              <div class="col-xs-6 col-md-6" id='sitio-info'>
+              </div>
+              <div class="col-xs-6 col-md-6" id='descripcion-sitio'>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <div id='usuarios-asignados'>
+          <div id='listaAsignados'>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <div id='usuarios-google'>
+          <h3> <b> Usuarios google+ </b> </h3>
+          <button> Cargar Usuarios Google+ </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id='colecciones'>
+    <div class="row">
+      <div class="col-xs-3 col-md-3">
+        <div id="listado">
+          <h3> <b> Lista de Aparcamientos <b> </h3>
+            <div id='lista'>
+            </div>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <div id='creaCol'>
+          <h3> <b> Crea colección </b> </h3>
+          Nombre nueva colección: <input type="text" name='nuevaCol' placeholder="Nombre nueva colección" /> <button> Crear </button>
+        <div id='listaColCreadas'>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <div class="col-xs-3 col-md-3">
+        <div id='colCreadas'>
+          <h3> <b> Lista de colecciones </b> </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

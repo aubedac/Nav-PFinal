@@ -1,0 +1,188 @@
+body {
+  background-image: url(http://www.empire.travel/wp-content/uploads/2015/01/trianglify-background-1.svg);
+  background-size: cover;
+}
+
+#principal .container #map {
+  border: 3px solid black;
+  height: 350px;
+  width: auto;
+}
+
+.navbar-inverse .container-fluid .nav button {
+  margin-left: 20px;
+}
+
+
+.navbar-inverse .container-fluid .nav #todosAparca {
+  margin-top: 11px;
+  margin-left: 28px;
+}
+
+.navbar-inverse .container-fluid .navbar-header .navbar-brand img {
+  margin-top: -90px;
+  margin-left: 5px;
+  position: relative;
+  height: 200px;
+  width: 200px;
+}
+
+#principal #cargarParkings {
+  margin-top: 10px;
+  height: 350px;
+  width: auto;
+  border: 2px solid black;
+}
+
+#principal #seleccionado {
+  margin-top: 10px;
+  height: 350px;
+  width: auto;
+  border: 2px solid black;
+}
+
+#principal #cargarParkings h3 {
+  text-align: center;
+}
+
+#principal #seleccionado h3 {
+  text-align: center;
+}
+
+#principal .row #primero #cargarParkings #lista {
+  overflow: auto;
+  height: 285px;
+  width: auto;
+}
+
+#principal .row #tercero #seleccionado #info {
+  margin-left: 15px;
+  height: 285px;
+  width: auto;
+  overflow: auto;
+}
+
+#principal .row #tercero #seleccionado #info .row #carousel #myCarousel {
+  height: 250px;
+  width: 500px;
+  border: 2px solid black;
+  background-position: center;
+  background-repeat: non-repeat;
+  background-size: cover;
+  margin-left: 50px;
+  margin-top: 12px;
+}
+
+#principal .row #tercero #seleccionado #info .row #carousel #myCarousel .carousel-inner .item {
+  background-position: center;
+  background-repeat: non-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 247px;
+}
+
+#principal .row #tercero #seleccionado #info .row #carousel #myCarousel .carousel-inner .item img {
+  height: 100%;
+  width: 100%;
+}
+
+#principal .row #colActual {
+  border: 2px solid black;
+  height: 300px;
+  width: 100%;
+  margin-top: 15px;
+  overflow: auto;
+}
+
+
+#instalaciones .row #seleccionado {
+  border: 2px solid black;
+  margin-left: 10%;
+  height: 275px;
+  width: 80%;
+  overflow: auto;
+}
+
+#instalaciones .row #seleccionado h3 {
+  text-align: center;
+}
+
+#instalaciones .row #usuarios-asignados {
+  margin-top: 10px;
+  border: 2px solid black;
+  margin-left: 20%;
+  height: 275px;
+  width: 75%;
+  overflow: auto;
+}
+
+#instalaciones .row #usuarios-asignados h3 {
+  text-align: center;
+}
+
+#instalaciones .row #usuarios-google {
+  margin-top: 10px;
+  border: 2px solid black;
+  margin-left: 5%;
+  height: 275px;
+  width: 75%;
+  overflow: auto;
+}
+
+#instalaciones .row #usuarios-google h3 {
+  text-align: center;
+}
+
+#instalaciones .row #usuarios-google button {
+  margin-left: 30%;
+}
+
+#colecciones .row #listado {
+  margin-left: 10px;
+  border: 2px solid black;
+  height: 350px;
+  width: 310px;
+}
+
+#colecciones .row #listado #lista {
+  align-content: center;
+  overflow: auto;
+  height: 290px;
+  width: 300px;
+}
+
+
+#colecciones .row #listado h3 {
+  text-align: center;
+}
+
+#colecciones .row #creaCol {
+  border: 2px solid black;
+  overflow: auto;
+  height: 350px;
+  width: auto;
+}
+
+#colecciones .row #creaCol h3 {
+  text-align: center;
+}
+
+#colecciones .row #colCreadas {
+  margin-right: 10px;
+  border: 2px solid black;
+  overflow: auto;
+  height: 350px;
+  width: auto;
+}
+
+#colecciones .row #colCreadas h3 {
+  text-align: center;
+}
+
+#myModalGuardar button {
+  margin-left: 35%;
+}
+
+#myModalCargar button {
+  margin-left: 35%;
+}
